@@ -3,7 +3,6 @@ const app = express();
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
-// const dbConnect = require("./dbConnect")
 require("dotenv").config();
 const port = process.env.PORT;
 
@@ -15,8 +14,8 @@ function createToken(user) {
     {
       email: user.email,
     },
-    "zobayed",
-    { expiresIn: "1h" }
+    "nill",
+    { expiresIn: "5h" }
   );
   return token;
 }
@@ -24,7 +23,7 @@ function createToken(user) {
 function verifyToken(req, res, next) {
   const token = req.headers.authorization.split(" ")[1];
   console.log(token);
-  const verify = jwt.verify(token, "zobayed");
+  const verify = jwt.verify(token, "nill");
   console.log(verify);
   if (!verify?.email) {
     return res.send("You are not authorization");
@@ -72,7 +71,7 @@ async function run() {
       });
       res.send(fruitsData);
     });
-    app.patch("/fruits/:id",  async (req, res) => {
+    app.patch("/fruits/:id", verifyToken, async (req, res) => {
       const id = req.params.id;
       const updateData = req.body;
       const fruitsData = await fruitsCollection.updateOne(
@@ -109,21 +108,20 @@ async function run() {
       res.send({ token });
     });
 
-    app.get("/user/get/:id", async (req, res) => {
+    app.get("/user/get/:id", verifyToken, async (req, res) => {
       const id = req.params.id;
-      // console.log(id);
       const result = await userCollection.findOne({ _id: new ObjectId(id) });
       res.send(result);
     });
 
-    app.get("/user/:email", async (req, res) => {
+    app.get("/user/:email", verifyToken,  async (req, res) => {
       const email = req.params.email;
 
       const result = await userCollection.findOne({ email });
       res.send(result);
     });
 
-    app.patch("/user/:email", async (req, res) => {
+    app.patch("/user/:email",verifyToken, async (req, res) => {
       const email = req.params.email;
       const userData = req.body;
       const result = await userCollection.updateOne(
@@ -134,7 +132,7 @@ async function run() {
       res.send(result);
     });
 
-    console.log("Database is connected to MongoDB!");
+    console.log("Database is connected ");
   } finally {
   }
 }
@@ -145,5 +143,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, (req, res) => {
-  console.log("App is listening on Port : ", port);
+  console.log("db is listening on Port : ", port);
 });
