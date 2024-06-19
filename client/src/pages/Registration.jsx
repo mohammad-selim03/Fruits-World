@@ -33,6 +33,7 @@ const Registration = () => {
             email: data?.user?.email,
             name: name,
           };
+          // store user in mongoDB
           fetch("https://fruiterer-server2.onrender.com/user", {
             method: "POST",
             headers: {
@@ -42,6 +43,7 @@ const Registration = () => {
           })
             .then((res) => res.json())
             .then((data) => console.log(data));
+            navigate('/')
         }
       });
       if (user) {

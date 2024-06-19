@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import defaultUser from '../assets/defaultUser.png'
 
 const Navbar = () => {
   const { logout, user } = useAuth();
@@ -66,9 +67,9 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        <a className="btn btn-ghost text-green-500 uppercase font-bold text-xl">
+        <Link to={'/'} className="btn btn-ghost text-green-500 uppercase font-bold text-xl">
         Fruits World
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -77,6 +78,12 @@ const Navbar = () => {
           </li>
           <li>
             <Link className="text-green-500 font-semibold" to={"/about"}>About</Link>
+          </li>
+          <li>
+            <Link className="text-green-500 font-semibold" to={"/"}>Partners</Link>
+          </li>
+          <li>
+            <Link className="text-green-500 font-semibold" to={"/menu"}>Menu</Link>
           </li>
           <li>
             <Link className="text-green-500 font-semibold" to={"/contact"}>Contact us</Link>
@@ -109,7 +116,7 @@ const Navbar = () => {
         )}
         <div className="avatar">
           <div className="w-12 rounded-full border-2 border-violet">
-            <img src={user?.photoURL || "/public/placeholder.jpg"} />
+            <img src={user?.photoURL || defaultUser} />
           </div>
         </div>
       </div>

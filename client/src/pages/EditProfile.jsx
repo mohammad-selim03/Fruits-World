@@ -13,6 +13,8 @@ export default function EditProfile() {
     const age = form.age.value;
     const mobileNumber = form.mobileNumber.value;
 
+    const token = localStorage.getItem("token")
+
     const userData = {
       name,
       age,
@@ -24,6 +26,7 @@ export default function EditProfile() {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`
       },
       body: JSON.stringify(userData),
     })
@@ -39,7 +42,7 @@ export default function EditProfile() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-y-5">
         <div className="flex flex-col">
           <label className="text-green-600 font-semibold" htmlFor="">
-            User Name
+             Name
           </label>
           <input
             type="text"
@@ -50,7 +53,7 @@ export default function EditProfile() {
         </div>
         <div className="flex flex-col">
           <label className="text-green-600 font-semibold" htmlFor="">
-            User Email
+             Email
           </label>
           <input
             type="text"
@@ -62,7 +65,7 @@ export default function EditProfile() {
         </div>
         <div className="flex flex-col">
           <label className="text-green-600 font-semibold" htmlFor="">
-            User Age
+             Age
           </label>
           <input
             type="text"
@@ -72,7 +75,7 @@ export default function EditProfile() {
         </div>
         <div className="flex flex-col">
           <label className="text-green-600 font-semibold" htmlFor="">
-            User Mobile
+             Mobile
           </label>
           <input
             type="text"
