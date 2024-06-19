@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import defaultUser from "../assets/defaultUser.png";
 import axios from "axios";
@@ -13,38 +13,17 @@ const Navbar = () => {
     await logout();
   };
 
-  const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
-  useEffect(() => {
-    fetchProducts(); // Fetch products when component mounts
-  }, []);
-
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get(
-        "https://fruiterer-server2.onrender.com/fruits"
-      ); // Adjust URL as per your backend route
-      setProducts(response.data); // Assuming response.data is an array of products
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
+  const navigate = useNavigate();
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredProducts = products.filter((product) => {
-    const productName = product.name || ""; // Default to empty string if product.name is undefined
-    // return productName.toLowerCase().includes(searchTerm.toLowerCase());
-    const lowerCaseProductName = productName.toLowerCase();
-    const lowerCaseSearchTerm = searchTerm.toLowerCase();
-    console.log('productName:', productName); // Check if product.name is correct
-    console.log('lowerCaseProductName:', lowerCaseProductName); // Check converted to lowercase
-    console.log('lowerCaseSearchTerm:', lowerCaseSearchTerm); // Check converted to lowercase
-    return lowerCaseProductName.includes(lowerCaseSearchTerm);
-  });
+  const handleSearch = (event) => {
+    event.preventDefault();
+    navigate(`/searchproduct/results?search=${searchTerm}`);
+  };
 
   return (
     <>
@@ -167,20 +146,22 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        {/* Search functinalities */}
-        <div className="form-control">
-          <Link  to={"/searchproduct/results"}>
-            {" "}
+        {/* Search functinalities */}{" "}
+        <form onSubmit={handleSearch}>
+        <Link to={`/searchproduct/results?search=${searchTerm}`}>
+
+          <div className="form-control">
             <input
               type="text"
               placeholder="Search Products"
               value={searchTerm}
               onChange={handleSearchChange}
-             
               className="input input-bordered w-24 md:w-auto border-success"
             />
+          </div>
           </Link>
-        </div>
+
+        </form>
         <div className="navbar-end space-x-2">
           {user && (
             <button
