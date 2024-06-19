@@ -21,10 +21,11 @@ const SingleProductCardDashboard = ({ fruit, onDelete }) => {
       });
   };
 
+
   return (
     <div className="card w-72 bg-base-100 shadow-xl">
       <figure>
-        <img className="w-72" src={image_url} alt="fruits" />
+        <img className="w-72 h-52" src={image_url} alt="fruits" />
       </figure>
       <div className="card-body">
         <h2 className="card-title uppercase text-green-600 font-semibold">
@@ -32,16 +33,16 @@ const SingleProductCardDashboard = ({ fruit, onDelete }) => {
         </h2>
         <p>{description}</p>
         <h3 className="text-xl font-semibold">{brand}</h3>
-        <h3 className="text-xl font-semibold text-orange-500 ">${price}</h3>
+        <h3 className="text-xl font-semibold text-orange-500 -mt-3">${price}</h3>
 
         <div className="card-actions justify-center gap-4">
-          <button className="btn bg-green-400 text-white">
+          <button className="btn bg-green-400 text-white text-xs w-14">
             <Link to={`edit/${_id}`}>Edit</Link>
           </button>
-          <button className="btn bg-fuchsia-600 text-white">
+          <button className="btn bg-fuchsia-600 text-white text-xs w-20">
             <Link to={`/products/${_id}`}>See details</Link>
           </button>
-          <button onClick={handleDelete} className="btn bg-red-500 text-white">
+          <button onClick={handleDelete} className="btn bg-red-500 text-white text-xs w-14">
             Delete
           </button>
         </div>

@@ -19,8 +19,22 @@ export default function ProductDetails() {
         <img className="h-[500px]" src={image_url} alt="Album" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{title}</h2>
-        <p>{description}</p>
+        <div className="flex justify-between">
+          <h2 className="card-title">{title}</h2>
+          <span className="bg-red-500 p-2 rounded-2xl text-white font-semibold">
+            Flash Sale
+          </span>
+        </div>
+        <p className="text-gray-400 mt-10">{description}....</p>
+        <div className="-mt-10">
+          <ul className="text-semibold">
+            <li>Best Quality</li>
+            <li>From Rajshahi</li>
+            <li>100% return policy</li>
+            <li>Authentic product</li>
+            <li>discrount upto 50%</li>
+          </ul>
+        </div>
         <div className="flex flex-wrap mb-5 gap-2">
           <img
             className="w-[24px] h-[24px]"
@@ -50,9 +64,16 @@ export default function ProductDetails() {
         </div>
         <h1>
           {" "}
-           <span className="font-bold">{brand}</span>{" "}
+          <span className="font-bold">{brand}</span>{" "}
         </h1>
-        <h2 className="text-orange-400 font-sans">Price: ${price}</h2>
+        <div className="flex justify-between items-center">
+          <h2 className="font-bold font-sans">
+            Price: <span className="text-orange-600">${price}</span>
+          </h2>
+          <button className="btn bg-green-500 text-white hover:bg-green-600 ">
+            Buy Now
+          </button>
+        </div>
       </div>
     </div>
   );
