@@ -37,7 +37,13 @@ const Navbar = () => {
 
   const filteredProducts = products.filter((product) => {
     const productName = product.name || ""; // Default to empty string if product.name is undefined
-    return productName.toLowerCase().includes(searchTerm.toLowerCase());
+    // return productName.toLowerCase().includes(searchTerm.toLowerCase());
+    const lowerCaseProductName = productName.toLowerCase();
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    console.log('productName:', productName); // Check if product.name is correct
+    console.log('lowerCaseProductName:', lowerCaseProductName); // Check converted to lowercase
+    console.log('lowerCaseSearchTerm:', lowerCaseSearchTerm); // Check converted to lowercase
+    return lowerCaseProductName.includes(lowerCaseSearchTerm);
   });
 
   return (
@@ -163,13 +169,17 @@ const Navbar = () => {
         </div>
         {/* Search functinalities */}
         <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search Products"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="input input-bordered w-24 md:w-auto border-success"
-          />
+          <Link  to={"/searchproduct/results"}>
+            {" "}
+            <input
+              type="text"
+              placeholder="Search Products"
+              value={searchTerm}
+              onChange={handleSearchChange}
+             
+              className="input input-bordered w-24 md:w-auto border-success"
+            />
+          </Link>
         </div>
         <div className="navbar-end space-x-2">
           {user && (
@@ -186,66 +196,6 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* search products */}
-      <div className="mb-64">
-        <ul className="mt-20 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 justify-center items-center gap-10 lg:w-[1200px] mx-auto">
-          {filteredProducts.map((product) => (
-            <div className="card w-64 bg-base-100 shadow-xl">
-            <figure>
-              <img className="w-64 rounded-xl" src={product?.image_url} alt="fruits" />
-            </figure>
-            <div className="card-body shadow-2xl ">
-              <div className="flex justify-between">
-                <h2 className="card-title text-green-600 uppercase font-semibold  ">
-                  {product?.title}
-                </h2>
-                <h3 className="text-xl font-semibold">
-                  <span className="text-orange-400">$</span>
-                  {product?.price}
-                </h3>
-              </div>
-      
-              <p>{products?.description}</p>
-              <div className="flex flex-wrap -mt-3 gap-2">
-                <img
-                  className="w-[18px] h-[18px]"
-                  src="/src/assets/img/icon/1.png"
-                  alt=""
-                />
-                <img
-                  className="w-[18px] h-[18px]"
-                  src="/src/assets/img/icon/1.png"
-                  alt=""
-                />
-                <img
-                  className="w-[18px] h-[18px]"
-                  src="/src/assets/img/icon/1.png"
-                  alt=""
-                />
-                <img
-                  className="w-[18px] h-[18px]"
-                  src="/src/assets/img/icon/3.png"
-                  alt=""
-                />
-                <img
-                  className="w-[18px] h-[18px]"
-                  src="/src/assets/img/icon/2.png"
-                  alt=""
-                />
-              </div>
-              <h3 className="text-xl font-semibold">{products?.brand}</h3>
-      
-              <div className="card-actions justify-center">
-                <button className="btn bg-green-600 text-white w-3/4 font-sans">
-                  <Link to={`/products/${product?._id}`}>See details</Link>
-                </button>
-              </div>
-            </div>
-          </div>
-          ))}
-        </ul>
       </div>
     </>
   );

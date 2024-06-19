@@ -17,6 +17,7 @@ import AddProducts from "../pages/AddProducts";
 import EditProducts from "../pages/EditProducts";
 import EditProfile from "../pages/EditProfile";
 import Contact from "../pages/Contact";
+import SearchProducts from "../components/SearchProducts";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Registration />,
+      },
+      {
+        path: "/searchproduct/results",
+        element: <SearchProducts />,
       },
     ],
   },
