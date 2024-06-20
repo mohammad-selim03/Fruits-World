@@ -45,22 +45,17 @@ export default function AddProducts() {
               type="text"
               name="title"
               placeholder="Title"
+              required
             />
           </div>
-          {/* <div className="mt-3">
-            <input
-              className="bg-gray-100 p-4 w-full border rounded-lg border-green-600 "
-              type="text"
-              name="brand"
-              placeholder="Brand"
-            />
-          </div> */}
+        
           <div className="mt-3">
             <input
               className="bg-gray-100 p-4 w-full border rounded-lg border-green-600 "
               type="number"
               name="price"
               placeholder="Price"
+              required
             />
           </div>
           <div className="mt-3">
@@ -69,6 +64,7 @@ export default function AddProducts() {
               type="text"
               name="dscription"
               placeholder="Dscription"
+              required
             />
           </div>
           <div className="mt-3">
@@ -77,6 +73,7 @@ export default function AddProducts() {
               type="text"
               name="image_url"
               placeholder="Image Url"
+              required
             />
           </div>
 

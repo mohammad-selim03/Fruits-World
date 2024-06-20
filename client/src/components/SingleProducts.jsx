@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
-
+// import { FaStar } from "react-icons/fa";
+// import { FaStarHalfAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import star from "../assets/star.png"
 
 const SingleProducts = ({ fruit }) => {
   // console.log(fruit);
@@ -9,7 +11,7 @@ const SingleProducts = ({ fruit }) => {
   return (
     <div className="card w-64 bg-base-100 shadow-xl">
       <figure>
-        <img className="w-64 rounded-xl" src={image_url} alt="fruits" />
+        <img className="w-64 rounded-xl h-40" src={image_url} alt="fruits" />
       </figure>
       <div className="card-body shadow-2xl ">
         <div className="flex justify-between">
@@ -24,31 +26,8 @@ const SingleProducts = ({ fruit }) => {
 
         <p>{description}</p>
         <div className="flex flex-wrap -mt-3 gap-2">
-          <img
-            className="w-[18px] h-[18px]"
-            src="/src/assets/img/icon/1.png"
-            alt=""
-          />
-          <img
-            className="w-[18px] h-[18px]"
-            src="/src/assets/img/icon/1.png"
-            alt=""
-          />
-          <img
-            className="w-[18px] h-[18px]"
-            src="/src/assets/img/icon/1.png"
-            alt=""
-          />
-          <img
-            className="w-[18px] h-[18px]"
-            src="/src/assets/img/icon/3.png"
-            alt=""
-          />
-          <img
-            className="w-[18px] h-[18px]"
-            src="/src/assets/img/icon/2.png"
-            alt=""
-          />
+         
+          <img className="w-32 mx-auto mt-2" src={star} alt="" />
         </div>
         <h3 className="text-xl font-semibold">{brand}</h3>
 
